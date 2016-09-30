@@ -25,7 +25,18 @@ Models
 
 View - printer class (print board as 2d board rather than array, give options for commands - place ship, attack)
 
+A | 0 0 0 0 0 0
+B | 0 0 0 0 0 0
+C | 0 0 0 0 0 0
+D | 0 0 0 0 0 0
+E | 0 0 0 0 0 0
+F | 0 0 0 0 0 0
+    - - - - - -
+    1 2 3 4 5 6
 
+Choose hit
+  x:
+  y:
 
 No computer, just two player
 
@@ -37,3 +48,5 @@ p2: set up ships on boards (place on board, viable position ( on board or not ov
 Repeat until one player has one
   p1: Show opponents board (only blank, hit or miss icons),fires shot at one square(options x and y), gets feedback (hit, sunk ship or miss), gets feedback on game status (won or not)
   p2: Show opponents board (only blank, hit or miss icons),fires shot at one square(options x and y), gets feedback (hit or miss), gets feedback on game status (won or not)
+
+player has a board(init new board at init) and several ships, it can place ships on the board(asks the board to do add counter) and fire on them(ask the board to change counter), it can see board (ask board(player))
