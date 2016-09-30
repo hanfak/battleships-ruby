@@ -25,14 +25,14 @@ Models
 
 View - printer class (print board as 2d board rather than array, give options for commands - place ship, attack)
 
-A | 0 0 0 0 0 0
-B | 0 0 0 0 0 0
-C | 0 0 0 0 0 0
-D | 0 0 0 0 0 0
-E | 0 0 0 0 0 0
-F | 0 0 0 0 0 0
-    - - - - - -
-    1 2 3 4 5 6
+6 A | 0 0 0 0 0 0
+5 B | 0 0 0 0 0 0
+4 C | 0 0 0 0 0 0
+3 D | 0 0 0 0 0 0
+2 E | 0 0 0 0 0 0
+1 F | 0 0 0 0 0 0
+      - - - - - -
+      1 2 3 4 5 6
 
 Choose hit
   x:

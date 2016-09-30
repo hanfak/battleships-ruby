@@ -13,9 +13,15 @@ describe Player do
 
   describe '#add' do
     it 'adds a ship of size 1 to board' do
-      player.add(ship, 2, 3)
+      player.add(ship, 4, 2)
 
       expect(player.show_board).to eq one_ship_on_board
+    end
+
+    it 'adds a ship of size 1 to board on different location' do
+      player.add(ship, 2, 5)
+
+      expect(player.show_board).to eq one_ship_on_different_position_on_board
     end
   end
 
@@ -41,9 +47,9 @@ end
 
 def one_ship_on_different_position_on_board
   [[0,0,0,0,0,0],
+  [0,0,0,0,1,0],
   [0,0,0,0,0,0],
   [0,0,0,0,0,0],
-  [0,1,0,0,0,0],
   [0,0,0,0,0,0],
   [0,0,0,0,0,0]]
 end

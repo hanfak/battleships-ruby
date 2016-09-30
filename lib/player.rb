@@ -8,11 +8,6 @@ class Player
   end
 
   def add(ship, y_coord, x_coord)
-    @board =[[0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,1,0,0,0,0],
-            [0,0,0,0,0,0],
-            [0,0,0,0,0,0]]
+    @board[y_coord - 1][x_coord - 1] = ship.size
   end
 end
