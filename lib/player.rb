@@ -7,5 +7,6 @@ class Player
 
   def add(ship, y_coord, x_coord)
     @players_board.add_to_board(ship, y_coord, x_coord)
+    # p players_board
   end
 end

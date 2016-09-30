@@ -11,6 +11,9 @@ class Board
   end
 
   def add_to_board(ship, y_coord, x_coord)
-    @description[y_coord - 1][x_coord - 1] = ship
+    # place ship object in the number of adjacent columns in same row, up to the size of the ship
+    (1..ship.size).each do |number_ship_parts|
+      @description[y_coord - 1][x_coord + number_ship_parts - 2] = ship
+    end
   end
 end

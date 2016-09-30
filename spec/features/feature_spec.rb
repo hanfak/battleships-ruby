@@ -21,16 +21,19 @@ feature 'user story 2' do
     player = Player.new(Board.new)
     ship1 = Ship.new
     ship2 = Ship.new(2)
+    ship3 = Ship.new(6)
 
+    # Places ship on board along the rows
     player.add(ship1, 4, 2)
     player.add(ship2, 1, 1)
+    player.add(ship3, 6, 0)
 
     game_board = [[ship2,ship2,0,0,0,0],
                   [0,0,0,0,0,0],
                   [0,0,0,0,0,0],
                   [0,ship1,0,0,0,0],
                   [0,0,0,0,0,0],
-                  [0,0,0,0,0,0]]
+                  [ship3,ship3,ship3,ship3,ship3,ship3]]
 
     expect(player.players_board.description).to eq game_board
   end
