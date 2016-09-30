@@ -1,7 +1,7 @@
 class Ship
   attr_reader :size
-  
-  def initialize
-    @size = 1
+  DEFAULT_SIZE = 1
+  def initialize(size = DEFAULT_SIZE)
+    @size = size
   end
 end

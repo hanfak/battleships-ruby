@@ -22,8 +22,8 @@ feature 'user story 2' do
     ship1 = Ship.new
     ship2 = Ship.new(2)
 
-    player.add(ship, 4, 2)
-    player.add(ship1, 1, 1)
+    player.add(ship1, 4, 2)
+    player.add(ship2, 1, 1)
 
     game_board = [[ship2,ship2,0,0,0,0],
                   [0,0,0,0,0,0],
