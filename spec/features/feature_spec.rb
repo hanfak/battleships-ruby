@@ -1,6 +1,6 @@
 feature 'user story 1' do
   scenario 'place ship on the board' do
-    player = Player.new(board.new)
+    player = Player.new(Board.new)
     ship = Ship.new
     player.add(ship, 2, 3)
 

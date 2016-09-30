@@ -1,11 +1,43 @@
 {
   "RSpec": {
     "coverage": {
+      "/Users/hanfak/Dropbox/CODING/tech-test/battleships/spec/board_spec.rb": [
+        1,
+        null,
+        1,
+        2,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/hanfak/Dropbox/CODING/tech-test/battleships/lib/board.rb": [
+        1,
+        1,
+        2,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
       "/Users/hanfak/Dropbox/CODING/tech-test/battleships/spec/features/feature_spec.rb": [
         1,
         1,
         1,
-        0,
+        1,
         0,
         null,
         0,
@@ -32,7 +64,7 @@
         null,
         null,
         1,
-        2,
+        3,
         null,
         null,
         null,
@@ -43,7 +75,7 @@
       "/Users/hanfak/Dropbox/CODING/tech-test/battleships/lib/player.rb": [
         1,
         1,
-        1,
+        2,
         null,
         null,
         1,
@@ -52,6 +84,6 @@
         null
       ]
     },
-    "timestamp": 1475249902
+    "timestamp": 1475250175
   }
 }
