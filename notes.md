@@ -50,3 +50,7 @@ Repeat until one player has one
   p2: Show opponents board (only blank, hit or miss icons),fires shot at one square(options x and y), gets feedback (hit or miss), gets feedback on game status (won or not)
 
 player has a board(init new board at init) and several ships, it can place ships on the board(asks the board to do add counter) and fire on them(ask the board to change counter), it can see board (ask board(player))
+
+
+Should ship know its location???
+ship no if damaged or not??

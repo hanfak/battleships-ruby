@@ -15,7 +15,8 @@ describe Board do
       board.add_to_board(ship, 4, 2)
 
       expect(board.description[3][1]).to eq ship
-
+      
+      # Check other elements have not changed
       board.description.each_with_index do |row,row_index|
         row.each_with_index do |_,col_index|
           unless row_index == 3 && col_index == 1
@@ -42,10 +43,10 @@ describe Board do
 end
 
 def initial_board
-  return [[0,0,0,0,0,0],
-          [0,0,0,0,0,0],
-          [0,0,0,0,0,0],
-          [0,0,0,0,0,0],
-          [0,0,0,0,0,0],
-          [0,0,0,0,0,0]]
+  [[0,0,0,0,0,0],
+  [0,0,0,0,0,0],
+  [0,0,0,0,0,0],
+  [0,0,0,0,0,0],
+  [0,0,0,0,0,0],
+  [0,0,0,0,0,0]]
 end
