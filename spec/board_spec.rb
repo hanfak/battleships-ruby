@@ -1,8 +1,9 @@
 require 'board'
 
 describe Board do
-  let(:ship) { double(:Ship, size: 1) }
-  let(:ship1) { double(:Ship, size: 2) }
+  let(:ship) { double(:Ship, size: 1, store_location: :value) }
+  let(:ship1) { double(:Ship, size: 2, store_location: :value) }
+  let(:ship2) { double(:Ship, size: 4, store_location: :value) }
   subject(:board) {described_class.new}
 
   describe '#create_board' do
@@ -55,6 +56,11 @@ describe Board do
           end
         end
       end
+    end
+
+    it 'stores where the ship is placed on the board' do
+        board.add_to_board(ship2, 1, 1)
+        expect(ship2).to have_received(:store_location).exactly(4).times
     end
   end
 end

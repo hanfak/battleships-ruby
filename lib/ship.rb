@@ -8,7 +8,7 @@ class Ship
     @position = []
   end
 
-  def get_location(y_coord, x_coord)
+  def store_location(y_coord, x_coord)
     @position << [y_coord, x_coord]
   end
 end

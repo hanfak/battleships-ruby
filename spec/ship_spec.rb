@@ -19,18 +19,16 @@ describe Ship do
 
   describe '#store_location' do
     it 'stores one part of the ship location' do
-      ship.get_location(3,5)
+      ship.store_location(3,5)
 
       expect(ship.position).to eq [[3,5]]
     end
 
-    it 'stores one part of the ship location' do
-      ship.get_location(3,5)
-      ship.get_location(3,6)
+    it 'stores two part of the ship location' do
+      ship.store_location(3,5)
+      ship.store_location(3,6)
 
       expect(ship.position).to eq [[3,5], [3,6]]
     end
   end
-
-
 end
