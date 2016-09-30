@@ -1,13 +1,11 @@
 class Player
-  def initialize(board)
-    @board = board.create_board
-  end
+  attr_reader :players_board
 
-  def show_board
-    @board
+  def initialize(board)
+    @players_board = board
   end
 
   def add(ship, y_coord, x_coord)
-    @board[y_coord - 1][x_coord - 1] = ship.size
+    @players_board.add_to_board(ship, y_coord, x_coord)
   end
 end

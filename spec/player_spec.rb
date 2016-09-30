@@ -5,51 +5,17 @@ describe Player do
   let(:ship) { double(:Ship, size: 1) }
   subject(:player) {described_class.new(board)}
 
-  describe '#initialize' do
-    it 'has empty board' do
-      expect(player.show_board).to eq initial_board
+  describe '#players_board' do
+    it 'has instance of board' do
+      expect(player.players_board).to eq board
     end
   end
 
   describe '#add' do
     it 'adds a ship of size 1 to board' do
+      expect(board).to receive :add_to_board
+
       player.add(ship, 4, 2)
-
-      expect(player.show_board).to eq one_ship_on_board
-    end
-
-    it 'adds a ship of size 1 to board on different location' do
-      player.add(ship, 2, 5)
-
-      expect(player.show_board).to eq one_ship_on_different_position_on_board
     end
   end
-
-end
-
-def initial_board
-  [[0,0,0,0,0,0],
-  [0,0,0,0,0,0],
-  [0,0,0,0,0,0],
-  [0,0,0,0,0,0],
-  [0,0,0,0,0,0],
-  [0,0,0,0,0,0]]
-end
-
-def one_ship_on_board
-  [[0,0,0,0,0,0],
-  [0,0,0,0,0,0],
-  [0,0,0,0,0,0],
-  [0,1,0,0,0,0],
-  [0,0,0,0,0,0],
-  [0,0,0,0,0,0]]
-end
-
-def one_ship_on_different_position_on_board
-  [[0,0,0,0,0,0],
-  [0,0,0,0,1,0],
-  [0,0,0,0,0,0],
-  [0,0,0,0,0,0],
-  [0,0,0,0,0,0],
-  [0,0,0,0,0,0]]
 end

@@ -7,10 +7,10 @@ feature 'user story 1' do
     game_board = [[0,0,0,0,0,0],
                   [0,0,0,0,0,0],
                   [0,0,0,0,0,0],
-                  [0,1,0,0,0,0],
+                  [0,ship,0,0,0,0],
                   [0,0,0,0,0,0],
                   [0,0,0,0,0,0]]
 
-    expect(player.show_board).to eq game_board
+    expect(player.players_board.description).to eq game_board
   end
 end

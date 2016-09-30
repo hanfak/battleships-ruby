@@ -1,5 +1,7 @@
 require 'capybara/rspec'
-
+require './lib/player'
+require './lib/ship'
+require './lib/board'
 require 'coveralls'
 
 Coveralls.wear!
