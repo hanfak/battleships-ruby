@@ -101,18 +101,13 @@ feature 'user story 5' do
     message = "Ship already there: Choose another position so not overlap with a ship in that place"
     expect{ player.add(ship4, 6, 2) }.to raise_error message
 
-
     game_board = [[ship2,ship2,0,0,0,0],
                   [0,0,0,0,0,0],
                   [0,0,0,0,0,0],
                   [0,ship1,ship3,0,0,0],
                   [0,0,ship3,0,0,0],
                   [0,0,ship3,0,0,0]]
-    # p 'game'
-    # p game_board
-    #
-    # p 'des'
-    # p player.players_board.description
+
     expect(player.players_board.description).to eq game_board
   end
 end

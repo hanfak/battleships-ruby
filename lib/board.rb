@@ -43,12 +43,14 @@ class Board
   end
 
   def check_if_ship_already_exists_in_same_row(ship, y_coord, x_coord )
+    # Goes through row, and finds if ship exists in the space where new ship will go
     unless (0..ship.size-1).select {|ele| description[y_coord] [x_coord + ele] != 0 }.empty?
       raise "Ship already there: Choose another position so not overlap with a ship in that place"
     end
   end
 
   def check_if_ship_already_exists_in_same_column(ship, y_coord, x_coord )
+    # Goes through column, and finds if ship exists in the space where new ship will go
     unless (0..ship.size-1).select {|ele| description[y_coord + ele][x_coord] != 0 }.empty?
       raise "Ship already there: Choose another position so not overlap with a ship in that place"
     end
