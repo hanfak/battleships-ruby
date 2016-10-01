@@ -54,3 +54,4 @@ player has a board(init new board at init) and several ships, it can place ships
 
 Should ship know its location???
 ship no if damaged or not??
+vertical placement of ship going up or down?
