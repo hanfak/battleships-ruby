@@ -14,16 +14,20 @@ class Board
   # given starting point places to the right
   def place_horizontally(ship, y_coord, x_coord)
     (1..ship.size).each do |amount_of_ship_parts|
-      @description[y_coord - 1][x_coord + amount_of_ship_parts - 2] = ship
-      ship.store_location(y_coord, x_coord)
+      stored_x_coord = x_coord + amount_of_ship_parts - 1
+      
+      @description[y_coord ][stored_x_coord] = ship
+      ship.store_location(y_coord, stored_x_coord)
     end
   end
 
   # Given starting point places downwards
   def place_vertically(ship, y_coord, x_coord)
     (1..ship.size).each do |amount_of_ship_parts|
-      @description[y_coord + amount_of_ship_parts - 2][x_coord  - 1] = ship
-      ship.store_location(y_coord, x_coord)
+      stored_y_coord = y_coord + amount_of_ship_parts - 1
+
+      @description[stored_y_coord][x_coord  ] = ship
+      ship.store_location(stored_y_coord, x_coord)
     end
   end
 end
