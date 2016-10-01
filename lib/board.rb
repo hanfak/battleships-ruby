@@ -14,10 +14,7 @@ class Board
   # given starting point places to the right
   def place_horizontally(ship, y_coord, x_coord)
     check_ship_fits_on_board(x_coord, ship, description)
-
-    unless (0..ship.size-1).select {|ele| description[y_coord] [x_coord + ele] != 0 }.empty?
-      raise "Ship already there: Choose another position so not overlap with a ship in that place"
-    end
+    check_if_ship_already_exists_in_same_row(ship, y_coord, x_coord )
 
     (1..ship.size).each do |amount_of_ship_parts|
       stored_x_coord = x_coord + amount_of_ship_parts - 1
@@ -30,10 +27,7 @@ class Board
   # Given starting point places downwards
   def place_vertically(ship, y_coord, x_coord)
     check_ship_fits_on_board(y_coord, ship, description)
-
-    unless (0..ship.size-1).select {|ele| description[y_coord + ele][x_coord] != 0 }.empty?
-      raise "Ship already there: Choose another position so not overlap with a ship in that place"
-    end
+    check_if_ship_already_exists_in_same_column(ship, y_coord, x_coord )
 
     (1..ship.size).each do |amount_of_ship_parts|
       stored_y_coord = y_coord + amount_of_ship_parts - 1
@@ -46,5 +40,17 @@ class Board
   # Either the ship is out of bounds and/or the ship size pushes ship out of bounds
   def check_ship_fits_on_board(coord = nil, ship, description)
     raise "Out of bounds: starting position should be within game board boundary" if coord + ship.size > description.length
+  end
+
+  def check_if_ship_already_exists_in_same_row(ship, y_coord, x_coord )
+    unless (0..ship.size-1).select {|ele| description[y_coord] [x_coord + ele] != 0 }.empty?
+      raise "Ship already there: Choose another position so not overlap with a ship in that place"
+    end
+  end
+
+  def check_if_ship_already_exists_in_same_column(ship, y_coord, x_coord )
+    unless (0..ship.size-1).select {|ele| description[y_coord + ele][x_coord] != 0 }.empty?
+      raise "Ship already there: Choose another position so not overlap with a ship in that place"
+    end
   end
 end
