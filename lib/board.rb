@@ -8,17 +8,14 @@ class Board
   def add_to_board(ship, y_coord, x_coord, orientation)
     place_horizontally(ship, y_coord, x_coord) if orientation == :horizontal
     place_vertically(ship, y_coord, x_coord) if orientation == :vertical
-    # p description
   end
 
   private
   # given starting point places to the right
   def place_horizontally(ship, y_coord, x_coord)
     check_ship_fits_on_board(x_coord, ship, description)
-    # p description[y_coord].select {|space| space !=0}
-    unless description[y_coord].select {|space| space !=0}.empty?
-      # p 'run'
-      @description.map{|row| row.map{|space| space == ship ? 0 : space}}
+
+    unless (0..ship.size-1).select {|ele| description[y_coord] [x_coord + ele] != 0 }.empty?
       raise "Ship already there: Choose another position so not overlap with a ship in that place"
     end
 

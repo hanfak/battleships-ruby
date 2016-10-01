@@ -3,9 +3,9 @@ require 'board'
 describe Board do
   let(:ship) { double(:Ship, size: 1, store_location: :value) }
   let(:ship1) { double(:Ship, size: 2, store_location: :value) }
-  let(:ship2) { double(:Ship, size: 4, store_location: :value, position: [[5,3]]) }
-  let(:ship3) { double(:Ship, size: 3, store_location: :value ) }
-  let(:ship4) { double(:Ship, size: 4, store_location: :value, position: [[2,2],[2,3],[2,4],[2,5]]) }
+  let(:ship2) { double(:Ship, size: 4, store_location: :value) }
+  let(:ship3) { double(:Ship, size: 3, store_location: :value) }
+  let(:ship4) { double(:Ship, size: 4, store_location: :value) }
   subject(:board) {described_class.new}
 
   describe '#create_board' do
@@ -113,6 +113,28 @@ describe Board do
 
       message = "Ship already there: Choose another position so not overlap with a ship in that place"
       expect{ board.add_to_board(ship3, 0, 3, :vertical) }.to raise_error message
+    end
+
+    it 'deletes parts ship already laid down horizontal case' do
+      board.add_to_board(ship2, 2, 2, :vertical)
+      begin
+        board.add_to_board(ship3, 5, 1, :horizontal)
+      rescue
+        expect(board.description[5][1]).to eq 0
+        expect(board.description[5][2]).to eq ship2
+        expect(board.description[5][3]).to eq 0
+      end
+    end
+
+    it 'deletes parts ship already laid down vertical case' do
+      board.add_to_board(ship4, 2, 2, :horizontal)
+      begin
+        board.add_to_board(ship3, 0, 3, :vertical)
+      rescue
+        expect(board.description[0][3]).to eq 0
+        expect(board.description[1][3]).to eq 0
+        expect(board.description[2][3]).to eq ship4
+      end
     end
   end
 end
