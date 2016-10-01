@@ -13,9 +13,11 @@ class Board
   private
   # given starting point places to the right
   def place_horizontally(ship, y_coord, x_coord)
+    raise "Out of bounds: starting position should be within game board boundary" if x_coord + ship.size > description[0].length
+
     (1..ship.size).each do |amount_of_ship_parts|
       stored_x_coord = x_coord + amount_of_ship_parts - 1
-      
+
       @description[y_coord ][stored_x_coord] = ship
       ship.store_location(y_coord, stored_x_coord)
     end
@@ -23,6 +25,8 @@ class Board
 
   # Given starting point places downwards
   def place_vertically(ship, y_coord, x_coord)
+    raise "Out of bounds: starting position should be within game board boundary" if y_coord + ship.size > description.length
+
     (1..ship.size).each do |amount_of_ship_parts|
       stored_y_coord = y_coord + amount_of_ship_parts - 1
 

@@ -84,7 +84,20 @@ describe Board do
       end
     end
 
+    it 'raises error if shipped placed is goes over edge vertically' do
+      error_message = "Out of bounds: starting position should be within game board boundary"
+      expect{board.add_to_board(ship2, 5, 5, :vertical)}.to raise_error error_message
+    end
 
+    it 'raises error if shipped placed is goes over edge horizontally' do
+      error_message = "Out of bounds: starting position should be within game board boundary"
+      expect{board.add_to_board(ship2, 5, 5, :horizontal)}.to raise_error error_message
+    end
+
+    it 'raises error if shipped placed outside of board' do
+      error_message = "Out of bounds: starting position should be within game board boundary"
+      expect{board.add_to_board(ship2, 10, 5, :horizontal)}.to raise_error error_message
+    end
   end
 end
 

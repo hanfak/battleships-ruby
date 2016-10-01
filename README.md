@@ -1,11 +1,15 @@
+```
+DONE
 As a player
 So that I can prepare for the game
 I would like to place a ship in a board location
 
+DONE
 As a player
 So that I can play a more interesting game
 I would like to have a range of ship sizes to choose from
 
+DONE
 As a player
 So that I can create a layout of ships to outwit my opponent
 I would like to be able to choose the directions my ships face in
@@ -37,3 +41,4 @@ I would like to be able to see my hits and misses so far
 As a player
 So that I can play against a human opponent
 I would like to play a two-player game
+```
