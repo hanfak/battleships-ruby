@@ -3,7 +3,9 @@ require 'board'
 describe Board do
   let(:ship) { double(:Ship, size: 1, store_location: :value) }
   let(:ship1) { double(:Ship, size: 2, store_location: :value) }
-  let(:ship2) { double(:Ship, size: 4, store_location: :value) }
+  let(:ship2) { double(:Ship, size: 4, store_location: :value, position: [[5,3]]) }
+  let(:ship3) { double(:Ship, size: 3, store_location: :value ) }
+  let(:ship4) { double(:Ship, size: 4, store_location: :value, position: [[2,2],[2,3],[2,4],[2,5]]) }
   subject(:board) {described_class.new}
 
   describe '#create_board' do
@@ -97,6 +99,20 @@ describe Board do
     it 'raises error if shipped placed outside of board' do
       error_message = "Out of bounds: starting position should be within game board boundary"
       expect{board.add_to_board(ship2, 10, 5, :horizontal)}.to raise_error error_message
+    end
+
+    it 'raises error if ship is placed on taken board place horizontal case' do
+      board.add_to_board(ship2, 2, 2, :vertical)
+
+      message = "Ship already there: Choose another position so not overlap with a ship in that place"
+      expect{ board.add_to_board(ship3, 5, 1, :horizontal) }.to raise_error message
+    end
+
+    it 'raises error if ship is placed on taken board place vertical case' do
+      board.add_to_board(ship4, 2, 2, :horizontal)
+
+      message = "Ship already there: Choose another position so not overlap with a ship in that place"
+      expect{ board.add_to_board(ship3, 0, 3, :vertical) }.to raise_error message
     end
   end
 end

@@ -8,12 +8,19 @@ class Board
   def add_to_board(ship, y_coord, x_coord, orientation)
     place_horizontally(ship, y_coord, x_coord) if orientation == :horizontal
     place_vertically(ship, y_coord, x_coord) if orientation == :vertical
+    # p description
   end
 
   private
   # given starting point places to the right
   def place_horizontally(ship, y_coord, x_coord)
     check_ship_fits_on_board(x_coord, ship, description)
+    # p description[y_coord].select {|space| space !=0}
+    unless description[y_coord].select {|space| space !=0}.empty?
+      # p 'run'
+      @description.map{|row| row.map{|space| space == ship ? 0 : space}}
+      raise "Ship already there: Choose another position so not overlap with a ship in that place"
+    end
 
     (1..ship.size).each do |amount_of_ship_parts|
       stored_x_coord = x_coord + amount_of_ship_parts - 1
@@ -27,6 +34,10 @@ class Board
   def place_vertically(ship, y_coord, x_coord)
     check_ship_fits_on_board(y_coord, ship, description)
 
+    unless (0..ship.size-1).select {|ele| description[y_coord + ele][x_coord] != 0 }.empty?
+      raise "Ship already there: Choose another position so not overlap with a ship in that place"
+    end
+
     (1..ship.size).each do |amount_of_ship_parts|
       stored_y_coord = y_coord + amount_of_ship_parts - 1
 
@@ -35,6 +46,7 @@ class Board
     end
   end
 
+  # Either the ship is out of bounds and/or the ship size pushes ship out of bounds
   def check_ship_fits_on_board(coord = nil, ship, description)
     raise "Out of bounds: starting position should be within game board boundary" if coord + ship.size > description.length
   end

@@ -85,3 +85,34 @@ feature 'user story 4' do
     expect(player.players_board.description).to eq game_board
   end
 end
+
+feature 'user story 5' do
+  scenario 'Ships should not overlap' do
+    player = Player.new(Board.new)
+    ship1 = Ship.new
+    ship2 = Ship.new(2)
+    ship3 = Ship.new(3)
+    ship4 = Ship.new(4)
+
+    player.add(ship1, 4, 2)
+    player.add(ship2, 1, 1)
+    player.add(ship3, 4, 3, :vertical)
+
+    message = "Ship already there: Choose another position so not overlap with a ship in that place"
+    expect{ player.add(ship4, 6, 2) }.to raise_error message
+
+
+    game_board = [[ship2,ship2,0,0,0,0],
+                  [0,0,0,0,0,0],
+                  [0,0,0,0,0,0],
+                  [0,ship1,ship3,0,0,0],
+                  [0,0,ship3,0,0,0],
+                  [0,0,ship3,0,0,0]]
+    # p 'game'
+    # p game_board
+    #
+    # p 'des'
+    # p player.players_board.description
+    expect(player.players_board.description).to eq game_board
+  end
+end
