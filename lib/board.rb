@@ -1,13 +1,8 @@
 class Board
   attr_reader :description
 
-  def initialize
-    @description = [[0,0,0,0,0,0],
-                    [0,0,0,0,0,0],
-                    [0,0,0,0,0,0],
-                    [0,0,0,0,0,0],
-                    [0,0,0,0,0,0],
-                    [0,0,0,0,0,0]]
+  def initialize(y_initial = 6, x_initial = 6)
+    @description = Array.new(y_initial) { Array.new(x_initial, 0) }
   end
 
   def add_to_board(ship, y_coord, x_coord, orientation)
