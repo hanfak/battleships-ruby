@@ -2,9 +2,9 @@ require 'board'
 
 describe Board do
   let(:ship)  { double(:Ship, size: 1, store_location: :value) }
-  let(:ship1) { double(:Ship, size: 2, store_location: :value, hit_or_sunk: :ship_sunk) }
+  let(:ship1) { double(:Ship, size: 2, store_location: :value, hit_or_sunk: :ship_sunk, position: {[0,0] => :hit, [0,1] => :hit}) }
   let(:ship2) { double(:Ship, size: 4, store_location: :value) }
-  let(:ship3) { double(:Ship, size: 3, store_location: :value, hit_or_sunk: :hit) }
+  let(:ship3) { double(:Ship, size: 3, store_location: :value, hit_or_sunk: :hit, position: {[3,5] => :hit, [4,5] => :hit,[5,5] => :hit }) }
   let(:ship4) { double(:Ship, size: 4, store_location: :value) }
   subject(:board) {described_class.new}
 
@@ -179,6 +179,20 @@ describe Board do
       board.change_opponents_board_view(0,0)
 
       expect(board.change_opponents_board_view(0,1)).to eq :ship_sunk
+    end
+
+    it 'returns won if all ships are destroyed' do
+      allow(board).to receive(:description).and_return(game_1_board)
+      allow(ship1).to receive(:change_status)
+      allow(ship3).to receive(:change_status)
+      allow(board).to receive(:ships).and_return([ship1, ship3])
+
+      board.change_opponents_board_view(0,0)
+      board.change_opponents_board_view(0,1)
+      board.change_opponents_board_view(3,5)
+      board.change_opponents_board_view(4,5)
+
+      expect(board.change_opponents_board_view(5,5)).to eq :won
     end
   end
 end

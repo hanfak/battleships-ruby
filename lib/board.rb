@@ -5,21 +5,29 @@ class Board
 
   def initialize(y_initial = 6, x_initial = 6)
     @description = Array.new(y_initial) { Array.new(x_initial, SEA) }
+    @ships = []
   end
 
   def add_to_board(ship, y_coord, x_coord, orientation)
     place_horizontally(ship, y_coord, x_coord) if orientation == :horizontal
     place_vertically(ship, y_coord, x_coord) if orientation == :vertical
+    @ships << ship
   end
 
   def change_opponents_board_view(y_coord, x_coord)
     space = description[y_coord][x_coord]
     return :miss if space == SEA
     space.change_status(y_coord, x_coord)
-    space.hit_or_sunk
+    if ships.collect(&:position).collect(&:values).flatten.uniq == [:hit]
+      :won
+    else
+      space.hit_or_sunk
+    end
   end
 
+
   private
+  attr_reader :ships
   # given starting point places to the right
   def place_horizontally(ship, y_coord, x_coord)
     check_ship_fits_on_board(x_coord, ship, description)
