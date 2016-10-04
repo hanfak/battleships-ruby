@@ -140,3 +140,20 @@ feature 'user story 7' do
     expect(player2.attack(player1, 1, 2)).to eq :ship_sunk
   end
 end
+
+feature 'user story 8' do
+  scenario "Player sink all opponents ship and wins" do
+    player1 = Player.new(Board.new)
+    player2 = Player.new(Board.new)
+    ship1 = Ship.new
+    ship2 = Ship.new(2)
+
+    player1.add(ship1, 4, 3)
+    player1.add(ship2, 1, 1)
+
+
+    expect(player2.attack(player1, 1, 1)).to eq :hit
+    expect(player2.attack(player1, 1, 2)).to eq :ship_sunk
+    expect(player2.attack(player1, 4, 3)).to eq :won
+  end
+end

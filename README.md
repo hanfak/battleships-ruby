@@ -29,6 +29,7 @@ As a player
 So that I can win the game
 I would like to be able to fire at my opponent's board
 
+DONE
 As a player
 So that I can refine my strategy
 I would like to know when I have sunk an opponent's ship
