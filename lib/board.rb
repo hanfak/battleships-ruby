@@ -21,8 +21,6 @@ class Board
     all_ships_sunk? ? :won : ship.hit_or_sunk
   end
 
-
-
   private
   attr_reader :ships
   # given starting point places to the right

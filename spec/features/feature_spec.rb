@@ -137,7 +137,7 @@ feature 'user story 7' do
 
     player1.add(ship2, 1, 1)
     player1.add(ship1, 4, 3)
-    
+
     expect(player2.attack(player1, 1, 1)).to eq :hit
     expect(player2.attack(player1, 2, 1)).to eq :miss
     expect(player2.attack(player1, 1, 2)).to eq :ship_sunk
@@ -158,5 +158,31 @@ feature 'user story 8' do
     expect(player2.attack(player1, 1, 1)).to eq :hit
     expect(player2.attack(player1, 1, 2)).to eq :ship_sunk
     expect(player2.attack(player1, 4, 3)).to eq :won
+  end
+end
+
+
+feature 'user story 9' do
+  scenario "view opponents board" do
+    player1 = Player.new(Board.new)
+    player2 = Player.new(Board.new)
+    ship1 = Ship.new(3)
+    ship2 = Ship.new(2)
+
+    player1.add(ship1, 4, 3, :vertical)
+    player1.add(ship2, 1, 1)
+
+    player2.attack(player1, 1, 1)
+    player2.attack(player1, 2, 1)
+    player2.attack(player1, 4, 3)
+
+    opponents_board =   [[:hit,0,0,0,0,0],
+                        [:miss,0,0,0,0,0],
+                        [0,0,0,0,0,0],
+                        [0,0,:hit,0,0,0],
+                        [0,0,0,0,0,0],
+                        [0,0,0,0,0,0]]
+
+    expect(player2.view_opponent_board(player1)).to eq opponents_board
   end
 end
