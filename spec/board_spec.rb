@@ -2,9 +2,9 @@ require 'board'
 
 describe Board do
   let(:ship)  { double(:Ship, size: 1, store_location: :value) }
-  let(:ship1) { double(:Ship, size: 2, store_location: :value) }
+  let(:ship1) { double(:Ship, size: 2, store_location: :value, position: {[0,0]=>:hit, [0,1]=>:hit} ) }
   let(:ship2) { double(:Ship, size: 4, store_location: :value) }
-  let(:ship3) { double(:Ship, size: 3, store_location: :value) }
+  let(:ship3) { double(:Ship, size: 3, store_location: :value, position: {[3,5]=>:working, [4,5]=>:working, [5,5]=>:hit}) }
   let(:ship4) { double(:Ship, size: 4, store_location: :value) }
   subject(:board) {described_class.new}
 
@@ -153,9 +153,9 @@ describe Board do
 
     it 'hits ships' do
       allow(board).to receive(:description).and_return(game_1_board)
-      allow(ship).to receive(:change_status)
+      allow(ship3).to receive(:change_status)
 
-      expect(board.change_opponents_board_view(0,0)).to eq :hit
+      expect(board.change_opponents_board_view(5,5)).to eq :hit
     end
 
     it 'changes ship part location to hit' do
@@ -171,6 +171,16 @@ describe Board do
 
       expect(board.change_opponents_board_view(4,2)).to eq :miss
     end
+
+    it 'sinks the ship' do
+      allow(board).to receive(:description).and_return(game_1_board)
+      allow(ship1).to receive(:change_status)
+
+      board.change_opponents_board_view(0,0)
+
+      expect(board.change_opponents_board_view(0,1)).to eq :ship_sunk
+
+    end
   end
 end
 
@@ -184,10 +194,10 @@ def initial_board
 end
 
 def game_1_board
-  [[ship,0,0,0,0,0],
+  [[ship1,ship1,0,0,0,0],
   [0,0,0,0,0,0],
   [0,0,0,0,0,0],
-  [0,0,0,0,0,0],
-  [0,0,0,0,0,0],
-  [0,0,0,0,0,0]]
+  [0,0,0,0,0,ship3],
+  [0,0,0,0,0,ship3],
+  [0,0,0,0,0,ship3]]
 end

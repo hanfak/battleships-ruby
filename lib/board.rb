@@ -16,6 +16,7 @@ class Board
     space = description[y_coord][x_coord]
     return :miss if space == SEA
     space.change_status(y_coord, x_coord)
+    space.position.values.uniq == [:hit] ? :ship_sunk :    :hit
   end
 
   private
