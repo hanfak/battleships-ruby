@@ -13,7 +13,7 @@ describe Ship do
     end
 
     it 'has no position' do
-      expect(ship.position).to eq []
+      expect(ship.position).to eq ({})
     end
   end
 
@@ -21,14 +21,24 @@ describe Ship do
     it 'stores one part of the ship location' do
       ship.store_location(3,5)
 
-      expect(ship.position).to eq [[3,5]]
+      expect(ship.position).to eq ({[3,5] => :working})
     end
 
     it 'stores two part of the ship location' do
       ship.store_location(3,5)
       ship.store_location(3,6)
 
-      expect(ship.position).to eq [[3,5], [3,6]]
+      expect(ship.position).to eq ({[3,5] => :working, [3,6] => :working})
+    end
+
+  end
+
+  describe '#change_status' do
+    it 'change part location to :hit' do
+      ship.store_location(3,5)
+      ship.change_status(3,5)
+
+      expect(ship.position[[3,5]]).to eq :hit
     end
   end
 end

@@ -11,7 +11,10 @@ class Board
   end
 
   def change_opponents_board_view(y_coord, x_coord)
-    description[y_coord][x_coord] != 0 ? :hit : :miss
+    space = description[y_coord][x_coord]
+    return :miss if space == 0
+    space.change_status(y_coord, x_coord)
+    :hit
   end
 
   private

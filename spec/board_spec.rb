@@ -153,8 +153,17 @@ describe Board do
 
     it 'hits ships' do
       allow(board).to receive(:description).and_return(game_1_board)
+      allow(ship).to receive(:change_status)
 
       expect(board.change_opponents_board_view(0,0)).to eq :hit
+    end
+
+    it 'changes ship part location to hit' do
+      allow(board).to receive(:description).and_return(game_1_board)
+      expect(board.description[0][0]).to receive :change_status
+
+      board.change_opponents_board_view(0,0)
+
     end
 
     it 'miss ships' do

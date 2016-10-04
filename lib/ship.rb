@@ -5,10 +5,14 @@ class Ship
 
   def initialize(size = DEFAULT_SIZE)
     @size = size
-    @position = []
+    @position = {}
   end
 
   def store_location(y_coord, x_coord)
-    @position << [y_coord, x_coord]
+    @position[[y_coord, x_coord]] = :working
+  end
+
+  def change_status(y_coord, x_coord)
+    @position[[y_coord, x_coord]] = :hit
   end
 end
