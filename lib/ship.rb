@@ -15,4 +15,8 @@ class Ship
   def change_status(y_coord, x_coord)
     @position[[y_coord, x_coord]] = :hit
   end
+
+  def hit_or_sunk
+    position.values.uniq == [:hit] ? :ship_sunk : :hit
+  end
 end

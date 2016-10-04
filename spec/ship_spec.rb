@@ -41,4 +41,19 @@ describe Ship do
       expect(ship.position[[3,5]]).to eq :hit
     end
   end
+
+  describe '#hit_or_sunk' do
+    it 'returns hit if only a part of ship has been hit' do
+      allow(ship).to receive(:position).and_return({[3,5]=>:working, [4,5]=>:working, [5,5]=>:hit})
+
+      expect(ship.hit_or_sunk).to eq :hit
+    end
+
+
+    it 'returns ship_sunk if all parts of ship has been hit' do
+      allow(ship).to receive(:position).and_return({[0,0]=>:hit, [0,1]=>:hit})
+
+      expect(ship.hit_or_sunk).to eq :ship_sunk
+    end
+  end
 end
