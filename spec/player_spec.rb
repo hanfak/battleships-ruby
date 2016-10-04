@@ -27,5 +27,4 @@ describe Player do
       player.attack(player2, 4, 2)
     end
   end
-
 end

@@ -30,7 +30,6 @@ describe Ship do
 
       expect(ship.position).to eq ({[3,5] => :working, [3,6] => :working})
     end
-
   end
 
   describe '#change_status' do

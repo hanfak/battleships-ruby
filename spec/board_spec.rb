@@ -2,9 +2,9 @@ require 'board'
 
 describe Board do
   let(:ship)  { double(:Ship, size: 1, store_location: :value) }
-  let(:ship1) { double(:Ship, size: 2, store_location: :value, position: {[0,0]=>:hit, [0,1]=>:hit} ) }
+  let(:ship1) { double(:Ship, size: 2, store_location: :value, hit_or_sunk: :ship_sunk) }
   let(:ship2) { double(:Ship, size: 4, store_location: :value) }
-  let(:ship3) { double(:Ship, size: 3, store_location: :value, position: {[3,5]=>:working, [4,5]=>:working, [5,5]=>:hit}) }
+  let(:ship3) { double(:Ship, size: 3, store_location: :value, hit_or_sunk: :hit) }
   let(:ship4) { double(:Ship, size: 4, store_location: :value) }
   subject(:board) {described_class.new}
 
@@ -179,7 +179,6 @@ describe Board do
       board.change_opponents_board_view(0,0)
 
       expect(board.change_opponents_board_view(0,1)).to eq :ship_sunk
-
     end
   end
 end
