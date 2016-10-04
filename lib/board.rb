@@ -1,8 +1,10 @@
 class Board
   attr_reader :description
 
+  SEA = 0
+
   def initialize(y_initial = 6, x_initial = 6)
-    @description = Array.new(y_initial) { Array.new(x_initial, 0) }
+    @description = Array.new(y_initial) { Array.new(x_initial, SEA) }
   end
 
   def add_to_board(ship, y_coord, x_coord, orientation)
@@ -12,7 +14,7 @@ class Board
 
   def change_opponents_board_view(y_coord, x_coord)
     space = description[y_coord][x_coord]
-    return :miss if space == 0
+    return :miss if space == SEA
     space.change_status(y_coord, x_coord)
     :hit
   end
@@ -44,8 +46,7 @@ class Board
     end
   end
 
-
-  # Errors
+  #### Errors ####
 
   # Either the ship is out of bounds and/or the ship size pushes ship out of bounds
   def check_ship_fits_on_board(coord = nil, ship, description)
@@ -54,14 +55,14 @@ class Board
 
   def check_if_ship_already_exists_in_same_row(ship, y_coord, x_coord )
     # Goes through row, and finds if ship exists in the space where new ship will go
-    unless (0..ship.size-1).select {|ele| description[y_coord] [x_coord + ele] != 0 }.empty?
+    unless (0..ship.size-1).select {|ele| description[y_coord] [x_coord + ele] != SEA }.empty?
       raise "Ship already there: Choose another position so not overlap with a ship in that place"
     end
   end
 
   def check_if_ship_already_exists_in_same_column(ship, y_coord, x_coord )
     # Goes through column, and finds if ship exists in the space where new ship will go
-    unless (0..ship.size-1).select {|ele| description[y_coord + ele][x_coord] != 0 }.empty?
+    unless (0..ship.size-1).select {|ele| description[y_coord + ele][x_coord] != SEA }.empty?
       raise "Ship already there: Choose another position so not overlap with a ship in that place"
     end
   end
