@@ -52,6 +52,27 @@ Repeat until one player has one
 player has a board(init new board at init) and several ships, it can place ships on the board(asks the board to do add counter) and fire on them(ask the board to change counter), it can see board (ask board(player))
 
 
-Should ship know its location???
-ship no if damaged or not??
-vertical placement of ship going up or down?
+non ship ob board should be object :sea or :miss
+
+User story 6
+
+<!-- #opp_player.show_hidden_board calleed when player.opponents_board(opp_player) is run
+  - Give empty board of 0
+  - Show array with :hit, :miss, 0
+  - Shows the oppponent board to the player -->
+
+#player.attack(player_opp, x , y)
+  - calls player_opp.change_board_status(x-1,y-1)
+    - Check if location has ship
+      -> change ship status to :hit and return :hit
+      -> else change board SeaObjet status to :miss and return :miss
+      or return call to status for those objects
+
+Change 0 to SeaObjects, that if status = :miss
+  - default @status = 0
+
+ship.status
+  - check location array of ship, find coord and if matches, change :hit to true
+  - When placing ship, store location will have status arg default = nil
+  - When hit, status change to :hit,
+  - has coords of where hit
