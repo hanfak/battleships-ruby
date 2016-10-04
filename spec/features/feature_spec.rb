@@ -118,11 +118,10 @@ feature 'user story 6' do
     player2 = Player.new(Board.new)
     ship1 = Ship.new
     ship2 = Ship.new(2)
-    ship3 = Ship.new(3)
 
     player1.add(ship1, 4, 2)
     player1.add(ship2, 1, 1)
-    player1.add(ship3, 4, 3, :vertical)
+
     #
     # player1_board = [[:hit,0,0,0,0,0],
     #               [0,0,0,0,0,0],
@@ -131,13 +130,13 @@ feature 'user story 6' do
     #               [0,0,0,0,0,0],
     #               [0,0,0,0,0,0]]
 
-    player2.attack(player1, 1, 1)
-    player2.attack(player1, 3, 5)
-
-    # expect(player2.attack(player1, 1, 1)).to :hit
-    # expect(player2.attack(player1, 3, 5)).to :miss
-    expect(player2.opponents_board(player1)[0][0].status).to eq :hit
-    expect(player2.opponents_board(player1)[2][4].status).to eq :miss
+    # player2.attack(player1, 1, 1)
+    # player2.attack(player1, 3, 5)
+    expect(player2.attack(player1, 1, 1)).to eq :hit
+    expect(player2.attack(player1, 3, 5)).to eq :miss
+    expect(player2.attack(player1, 4, 2)).to eq :hit
+    # expect(player2.opponents_board(player1)[0][0].status).to eq :hit
+    # expect(player2.opponents_board(player1)[2][4].status).to eq :miss
 
   end
 end

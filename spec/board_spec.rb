@@ -145,10 +145,37 @@ describe Board do
       end
     end
   end
+
+  describe '#change_opponents_board_view' do
+    it 'responds to method' do
+      expect(board).to respond_to :change_opponents_board_view
+    end
+
+    it 'hits ships' do
+      allow(board).to receive(:description).and_return(game_1_board)
+
+      expect(board.change_opponents_board_view(0,0)).to eq :hit
+    end
+
+    it 'miss ships' do
+      allow(board).to receive(:description).and_return(game_1_board)
+
+      expect(board.change_opponents_board_view(4,2)).to eq :miss
+    end
+  end
 end
 
 def initial_board
   [[0,0,0,0,0,0],
+  [0,0,0,0,0,0],
+  [0,0,0,0,0,0],
+  [0,0,0,0,0,0],
+  [0,0,0,0,0,0],
+  [0,0,0,0,0,0]]
+end
+
+def game_1_board
+  [[ship,0,0,0,0,0],
   [0,0,0,0,0,0],
   [0,0,0,0,0,0],
   [0,0,0,0,0,0],

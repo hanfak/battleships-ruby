@@ -10,6 +10,10 @@ class Board
     place_vertically(ship, y_coord, x_coord) if orientation == :vertical
   end
 
+  def change_opponents_board_view(y_coord, x_coord)
+    description[y_coord][x_coord] != 0 ? :hit : :miss
+  end
+
   private
   # given starting point places to the right
   def place_horizontally(ship, y_coord, x_coord)
@@ -36,6 +40,9 @@ class Board
       ship.store_location(stored_y_coord, x_coord)
     end
   end
+
+
+  # Errors
 
   # Either the ship is out of bounds and/or the ship size pushes ship out of bounds
   def check_ship_fits_on_board(coord = nil, ship, description)

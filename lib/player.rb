@@ -10,6 +10,6 @@ class Player
   end
 
   def attack(opponent, y_coord, x_coord)
-    opponent.change_opponents_board_view(y_coord - 1, x_coord - 1)
+    opponent.players_board.change_opponents_board_view(y_coord - 1, x_coord - 1)
   end
 end
