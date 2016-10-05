@@ -186,3 +186,38 @@ feature 'user story 9' do
     expect(player2.view_opponent_board(player1)).to eq opponents_board
   end
 end
+
+feature 'user story 10' do
+  scenario "one sided game" do
+    player1 = Player.new(Board.new)
+    player2 = Player.new(Board.new)
+    ship1 = Ship.new(3)
+    ship2 = Ship.new(2)
+
+    player1.add(ship1, 4, 3, :vertical)
+    player1.add(ship2, 1, 1)
+    p player2.attack(player1, 1, 1)
+    p ''
+    p player2.attack(player1, 2, 1)
+    p ''
+    p player2.attack(player1, 4, 3)
+    p ''
+    p player2.attack(player1, 5, 3)
+    p ''
+    p 'run view_opponent_board'
+    p player2.view_opponent_board(player1)
+    p ''
+    p player2.attack(player1, 6, 3)
+    p ''
+    p player2.attack(player1, 1, 2)
+    opponents_board =   [[:hit,:hit,0,0,0,0],
+                        [:miss,0,0,0,0,0],
+                        [0,0,0,0,0,0],
+                        [0,0,:hit,0,0,0],
+                        [0,0,:hit,0,0,0],
+                        [0,0,:hit,0,0,0]]
+
+    expect(player2.view_opponent_board(player1)).to eq opponents_board
+
+  end
+end

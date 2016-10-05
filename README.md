@@ -39,6 +39,7 @@ As a player
 So that I know when to finish playing
 I would like to know when I have won or lost
 
+DONE
 As a player
 So that I can consider my next shot
 I would like to be able to see my hits and misses so far
