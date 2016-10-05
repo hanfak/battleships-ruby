@@ -182,7 +182,7 @@ feature 'user story 9' do
                         [0,0,:hit,0,0,0],
                         [0,0,0,0,0,0],
                         [0,0,0,0,0,0]]
-
+    # p player2.view_opponent_board(player1)
     expect(player2.view_opponent_board(player1)).to eq opponents_board
   end
 end

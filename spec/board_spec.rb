@@ -6,6 +6,8 @@ describe Board do
   let(:ship2) { double(:Ship, size: 4, store_location: :value) }
   let(:ship3) { double(:Ship, size: 3, store_location: :value, hit_or_sunk: :hit, position: {[3,5] => :hit, [4,5] => :hit,[5,5] => :hit }) }
   let(:ship4) { double(:Ship, size: 4, store_location: :value) }
+  let(:ship5) { double(:Ship, size: 2, store_location: :value, position: {[0,0] => :working, [0,1] => :working}) }
+  let(:ship6) { double(:Ship, size: 3, store_location: :value, position: {[3,5] => :working, [4,5] => :working,[5,5] => :working }) }
   subject(:board) {described_class.new}
 
   describe '#create_board' do
@@ -193,6 +195,38 @@ describe Board do
       board.change_opponents_board_view(4,5)
 
       expect(board.change_opponents_board_view(5,5)).to eq :won
+    end
+  end
+
+  describe '#show_hidden_board' do
+    it 'defaults to empty board' do
+      expect(board.show_hidden_board).to eq initial_board
+    end
+
+    it 'shows no ships' do
+      board.add_to_board(ship5, 0, 0, :horizontal)
+      board.add_to_board(ship6, 3, 5, :vertical)
+
+
+      expect(board.show_hidden_board).to eq initial_board
+    end
+
+    it 'shows hit' do
+      board.add_to_board(ship1, 0, 0, :horizontal)
+      board.add_to_board(ship6, 3, 5, :vertical)
+      allow(ship1).to receive(:change_status)
+      board.change_opponents_board_view(0,0)
+
+      expect(board.show_hidden_board[0][0]).to eq :hit
+    end
+
+    it 'shows miss' do
+      board.add_to_board(ship5, 0, 0, :horizontal)
+      board.add_to_board(ship6, 3, 5, :vertical)
+      allow(ship1).to receive(:change_status)
+      board.change_opponents_board_view(1,0)
+
+      expect(board.show_hidden_board[1][0]).to eq :miss
     end
   end
 end

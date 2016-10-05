@@ -27,4 +27,12 @@ describe Player do
       player.attack(player2, 4, 2)
     end
   end
+
+  describe '#view_opponent_board' do
+    it 'views opponent hidden board' do
+      expect(player2.players_board).to receive :show_hidden_board
+
+      player.view_opponent_board(player2)
+    end
+  end
 end
