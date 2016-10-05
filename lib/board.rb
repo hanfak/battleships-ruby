@@ -6,6 +6,7 @@ class Board
   def initialize(y_initial = 6, x_initial = 6)
     @description = Array.new(y_initial) { Array.new(x_initial, SEA) }
     @ships = []
+    @board_for_opponent = description
   end
 
   def add_to_board(ship, y_coord, x_coord, orientation)
@@ -22,26 +23,16 @@ class Board
   end
 
   def show_hidden_board
-    return description if ships.empty?
-    a_board = @description
-    ships.collect(&:position).collect(&:keys).reduce(:concat).each do |ship|
-      y, x = ship.first, ship.last
-
-      ships.each do |e|
-        if e.position[[y,x]] == :hit
-          a_board[y][x] = :hit
-          break
-        else
-          a_board[y][x] = 0
-        end
-      end
+    ships_poistions =  ships.collect(&:position).inject(Hash.new, :merge)
+    ships_poistions.each do |position , section_status|
+      board_for_opponent[position.first][position.last] = section_status == :hit ? :hit : SEA
     end
-    a_board
+    ships.empty? ? description : board_for_opponent
   end
 
   private
-  attr_reader :ships
-  
+  attr_reader :ships, :board_for_opponent
+
   # given starting point places to the right
   def place_horizontally(ship, y_coord, x_coord)
     check_ship_fits_on_board(x_coord, ship, description)
