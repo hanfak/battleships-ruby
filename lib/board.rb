@@ -11,6 +11,7 @@ class Board
   def add_to_board(ship, y_coord, x_coord, orientation)
     place_horizontally(ship, y_coord, x_coord) if orientation == :horizontal
     place_vertically(ship, y_coord, x_coord) if orientation == :vertical
+    # place_by_orientation(orientation,ship, y_coord, x_coord)
     @ships << ship
   end
 
@@ -24,17 +25,21 @@ class Board
   def show_hidden_board
     description.each_with_index.map do |row,i|
       row.each_with_index.map do |element, j|
-        unless element == SEA || element == :miss
-          element.position[[i,j]] == :hit ?  :hit : SEA
-        else
-          element
-        end
+        reveal_hit_ships(element, [i,j])
       end
     end
   end
 
   private
   attr_reader :ships
+
+  def reveal_hit_ships(element, position)
+    unless element == SEA || element == :miss
+      element.position[position] == :hit ?  :hit : SEA
+    else
+      element
+    end
+  end
 
   # given starting point places to the right
   def place_horizontally(ship, y_coord, x_coord)
@@ -61,6 +66,23 @@ class Board
       ship.store_location(stored_y_coord, x_coord)
     end
   end
+
+  # def place_by_orientation(orientation,ship, y_coord, x_coord)
+  #   check_ship_fits_on_board(y_coord, ship, description)
+  #   check_ship_already_exists_in_same_column(ship, y_coord, x_coord )
+  #
+  #   (1..ship.size).each do |amount_of_ship_parts|
+  #     if orientation == :vertical
+  #       stored_y_coord = y_coord + amount_of_ship_parts - 1
+  #       @description[stored_y_coord][x_coord] = ship
+  #       ship.store_location(stored_y_coord, x_coord)
+  #     else
+  #       stored_x_coord = x_coord + amount_of_ship_parts - 1
+  #       @description[y_coord][stored_x_coord] = ship
+  #       ship.store_location(y_coord, stored_x_coord)
+  #     end
+  #   end
+  # end
 
   def missed_ship(y_coord, x_coord)
     @description[y_coord][x_coord] = :miss
