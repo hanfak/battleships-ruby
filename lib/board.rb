@@ -6,7 +6,6 @@ class Board
   def initialize(y_initial = 6, x_initial = 6)
     @description = Array.new(y_initial) { Array.new(x_initial, SEA) }
     @ships = []
-    # @board_for_opponent = description
   end
 
   def add_to_board(ship, y_coord, x_coord, orientation)
@@ -16,43 +15,29 @@ class Board
   end
 
   def change_opponents_board_view(y_coord, x_coord)
-    p description
     ship = description[y_coord][x_coord]
-    p ship
     return missed_ship(y_coord, x_coord) if ship == SEA
     ship.change_status(y_coord, x_coord)
     all_ships_sunk? ? :won : ship.hit_or_sunk
   end
 
   def show_hidden_board
-    p 'start show_hidden_board'
-    p description
-    p 'end'
-    puts
     return description if ships.empty?
-    p 'start show_hidden_board line 2'
-    p description
-    p 'end'
-    puts
-    board_for_opponent = description
-    p 'start show_hidden_board line 3'
-    p description
-    p 'end'
-    puts
     ships_poistions =  ships.collect(&:position).inject(Hash.new, :merge)
-    p 'start show_hidden_board line 4'
-    p description
-    p 'end'
-    puts
-    #error 
+    board_pos = []
     ships_poistions.each do |position , section_status|
-      board_for_opponent[position.first][position.last] = section_status == :hit ? :hit : SEA
+      board_pos = description.collect do |row|
+        row.collect do |element|
+          unless (element == SEA || element == :miss)
+            section_status == :hit ?  :hit : SEA
+          else
+            element
+          end
+        end
+      end
     end
-    p 'start show_hidden_board line 5'
-    p description
-    p 'end'
-    puts
-    board_for_opponent
+
+    board_pos
   end
 
   private
@@ -85,7 +70,6 @@ class Board
   end
 
   def missed_ship(y_coord, x_coord)
-    p 'called'
     @description[y_coord][x_coord] = :miss
     return :miss
   end
