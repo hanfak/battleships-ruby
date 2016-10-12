@@ -32,13 +32,13 @@ player2 = Player.new(Board.new)
 
 ```ruby
 player1_ship1 = Ship.new(1)
-player1_ship1 = Ship.new(1)
+player1_ship2 = Ship.new(1)
 
-player2_ship2 = Ship.new(2)
+player2_ship1 = Ship.new(2)
 player2_ship2 = Ship.new(2)
 
-player3_ship3 = Ship.new(3)
-player3_ship3 = Ship.new(3)
+player3_ship1 = Ship.new(3)
+player3_ship2 = Ship.new(3)
 ```
 
 *place ship (make sure other player is not looking)*
@@ -70,7 +70,7 @@ or Player 1 attacks player 2
 player1.attack(player2, 3, 5)
 ```
 
-*View the opponents board*
+*View the opponents board to see where to place ship*
 
 Player 2 views player 1 board
 
@@ -90,7 +90,7 @@ Good luck
 
 ## To come
 
-A game runner, to avoid typing all this out
+A game runner, to avoid typing all the above out
 
 User Stories
 

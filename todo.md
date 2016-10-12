@@ -1,4 +1,6 @@
 - Build game runner
+  - Show letters instead of object
+  - space out board elements
 - Extract error methods to separate class
 - refactor place horizontal and vertical to one method
-- 
+-
