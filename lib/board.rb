@@ -22,22 +22,15 @@ class Board
   end
 
   def show_hidden_board
-    return description if ships.empty?
-    ships_poistions =  ships.collect(&:position).inject(Hash.new, :merge)
-    board_pos = []
-    ships_poistions.each do |position , section_status|
-      board_pos = description.collect do |row|
-        row.collect do |element|
-          unless (element == SEA || element == :miss)
-            section_status == :hit ?  :hit : SEA
-          else
-            element
-          end
+    description.each_with_index.map do |row,i|
+      row.each_with_index.map do |element, j|
+        unless element == SEA || element == :miss
+          element.position[[i,j]] == :hit ?  :hit : SEA
+        else
+          element
         end
       end
     end
-
-    board_pos
   end
 
   private

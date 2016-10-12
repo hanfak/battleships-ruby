@@ -214,10 +214,10 @@ describe Board do
     it 'shows hit' do
       board.add_to_board(ship1, 0, 0, :horizontal)
       board.add_to_board(ship6, 3, 5, :vertical)
-      allow(ship1).to receive(:change_status).and_return :hit
+      allow(ship1).to receive(:change_status)
 
       board.change_opponents_board_view(0,0)
-      p board.description
+
       expect(board.show_hidden_board[0][0]).to eq :hit
     end
 
