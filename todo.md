@@ -1,0 +1,4 @@
+- Build game runner
+- Extract error methods to separate class
+- refactor place horizontal and vertical to one method
+- 
